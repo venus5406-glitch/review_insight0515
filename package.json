@@ -1,8 +1,8 @@
 {
-  "name": "review-insight-backend",
+  "name": "review-insight",
   "version": "1.0.0",
-  "description": "AI감정분석 백엔드",
-  "main": "server.js",
+  "description": "AI감정분석 프로젝트",
+  "main": "api/analyze.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"

@@ -106,4 +106,4 @@ async function analyzeSentiment(req, res) {
   }
 }
 
-module.exports = { analyzeSentiment };
+module.exports = analyzeSentiment;
