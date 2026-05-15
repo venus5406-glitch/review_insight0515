@@ -1,6 +1,5 @@
 const { OpenAI } = require("openai");
 const supabase = require("../lib/supabase");
-const { encryptText } = require("../lib/encryption");
 require("dotenv").config();
 
 const openai = new OpenAI({
@@ -72,15 +71,12 @@ async function analyzeSentiment(req, res) {
     const confidence = typeof aiResult.confidence === 'number' ? aiResult.confidence : 80;
     const reason = aiResult.reason || "이유 분석 실패";
 
-    // 3. Supabase에 분석 결과 및 암호화된 텍스트 저장
+    // 3. Supabase에 분석 결과 저장
     if (supabase) {
-      // 원본 텍스트 암호화 (보안 수칙)
-      const encryptedText = encryptText(text);
-
       const { error } = await supabase
         .from("sentiment_analyses")
         .insert([{
-          input_text: encryptedText,
+          input_text: text,
           sentiment: validSentiment,
           sentiment_label: sentimentLabel,
           confidence: confidence,
